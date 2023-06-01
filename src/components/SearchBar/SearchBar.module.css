@@ -1,0 +1,38 @@
+.Barra{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-left: 930px;
+    margin-top: 0;
+}
+.Buscador{
+    width: 200px;
+    height: 10px;
+    padding: 10px;
+    border-radius: 50px;
+}
+.Buscador:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    box-shadow: 0px 0px 30px rgb(255, 255, 255);
+}
+.BotonAgregar{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100px;
+    height: 10px;
+    padding: 14px;
+    font-weight: bold;
+    font-size: medium;
+    background-color: rgba(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 50px;
+}
+
+.BotonAgregar:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    box-shadow: 0px 0px 30px rgb(255, 255, 255);
+}

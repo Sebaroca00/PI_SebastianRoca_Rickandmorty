@@ -1,0 +1,17 @@
+.Contenedor{
+   display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-between;
+}
+
+.Navegador{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+}
+
+.Link{
+    padding-right: 50px;    
+}
