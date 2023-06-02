@@ -7,14 +7,15 @@ import Nav from './components/Nav/Nav';
 import About from './components/About/About';
 import Detail from './components/Detail/Detail';
 import Form from './components/Form/Form';
+import Favorites from './components/Favorites/Favorites';
 
 function App() {
   const { pathname } = useLocation();
   const [characters, setCharacters] = useState([]);
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
-  const username = 'sebaroca00@gmail.com';
-  const password = 'seba123';
+  const username = '';
+  const password = '';
 
   function login(userData) {
     if (userData.password === password && userData.email === username) {
@@ -45,7 +46,7 @@ function App() {
 
   useEffect(() => {
     !access && navigate('/');
-  }, [access]);
+  }, [access, navigate]);
 
   return (
     <div className={style.App} style={{ padding: '25px' }}>
@@ -55,6 +56,7 @@ function App() {
         <Route path="/" element={<Form login={login} />} />
         <Route path="/about" element={<About />} />
         <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>

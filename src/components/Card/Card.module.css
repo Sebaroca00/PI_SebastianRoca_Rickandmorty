@@ -1,7 +1,7 @@
 .Carta {
     position: relative;
     width: 400px;
-    height: 200px;
+    height: 250px;
     background-image: url('../Img/Credencial.jpg');
     margin: 5px;
     border: 1px solid #ffffff;
@@ -15,12 +15,12 @@
   .AllDatos{
     display: flex;
     flex-direction: column;
-    border: 1px;
-      padding: -50px;
+    
+     
   }
   
    .Datos{
-    margin: 7px;
+    margin: 10px;
     padding-left: 145px;
     width: 248px;
     font-size: 20px;
@@ -38,7 +38,7 @@
   .Boton {
       position: absolute;
       bottom: 0;
-      right: 0;
+      left: 0;
       background-color: #f44336;
       color: rgb(0, 0, 0);
       border-radius: 50%;
