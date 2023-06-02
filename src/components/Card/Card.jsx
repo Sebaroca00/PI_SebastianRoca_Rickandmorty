@@ -1,24 +1,24 @@
 import style from "./Card.module.css"
-import { Link } from 'react-router-dom'
+import '../../App'
 
-const Card = ({ character, name, species, gender, image, onClose }) => {
+export default function Card(props) {
+  const{id, name, status, species, gender, origin, image, onClose} = props;
+
   return (
-   
-      <div className={style.Carta}>
-        <button onClick={() => onClose(character.id)} className={style.Boton}>
-          X
-        </button>
-
-        <Link to={`/detail/${character.id}`} >
-          <h2 className={style.Datos}>Nombre: {name}</h2>
-        </Link>  
-
-        <h2 className={style.Datos}>Especie: {species}</h2>
-        <h2 className={style.Datos}>Género: {gender}</h2>
+     <div className={style.Carta}>
+       <button className={style.Boton} 
+          onClick={() => {
+            onClose(id)}}>
+            X
+            </button>
+            <div className={style.AllDatos}>
+        <h2 className={style.Datos}>Name: {name}</h2>
+        <h2 className={style.Datos}>Status: {status}</h2>
+        <h2 className={style.Datos}>Specie: {species}</h2>
+        <h2 className={style.Datos}>Gender: {gender}</h2>
+        <h2 className={style.Datos}>Origin: {origin}</h2>
+        </div>
         <img className={style.Imagen} src={image} alt="" />
-      </div>
-    
+     </div>
   );
-};
-
-export default Card;
+}

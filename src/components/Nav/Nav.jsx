@@ -1,10 +1,22 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
-import style from './Nav.module.css'
+//import style from './Nav.module.css'
+ 
+const Nav = (props) =>{
+  const {onSearch} = props;
 
+  
 
+    return(
+      <div>
+        <SearchBar onSearch={onSearch}/>
+      </div>
+    )
+  }
 
+ export default Nav;
+/*
 const Nav = ({onSearch}) => {
 
     return (
@@ -18,5 +30,5 @@ const Nav = ({onSearch}) => {
       </Nav>
     );
   };
-  
-  export default Nav;
+  */
+ 

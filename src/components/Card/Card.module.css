@@ -12,17 +12,27 @@
     text-align: center;
     
   }
-  
+  .AllDatos{
+    display: flex;
+    flex-direction: column;
+    border: 1px;
+      padding: -50px;
+  }
   
    .Datos{
-      padding-left: 150px;
-      width: 250px;
-      font-size: 20px;
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      color: black;
-      background-color:#fefefe21;
+    margin: 7px;
+    padding-left: 145px;
+    width: 248px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    color: black;
+    background-color: #fefefe00;
+   }
+
+   .Datos:hover{
+    background-color: #fefefe5d;
    }
   
   .Boton {

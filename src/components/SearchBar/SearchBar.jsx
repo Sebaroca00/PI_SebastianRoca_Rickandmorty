@@ -1,31 +1,31 @@
 import style from "./SearchBar.module.css"
 import  { useState } from 'react'
 
+
 const SearchBar = ({ onSearch }) => {
-
-
-   const [character, setCharacter] = useState('');
- 
-   const handleInputChange = (event) => {
-      setCharacter(event.target.value);
+   const [ id, setId] = useState("");
+   const handleChange = (event) => {
+      setId(event.target.value);
     };
 
-    const handleSearch = (event) => {
-      event.preventDefault();
-      onSearch(character);
-      setCharacter('');
-    };
- 
+   
+   // const handleSearch = (event) => {
+   //   setId(event.target.value);
+   // };
    return (
-     <form onSubmit={handleSearch} className={style.Barra}>
-       <input className={style.Buscador}
-         type='text'
-         value={character}
-         onChange={handleInputChange}
-         placeholder='Buscar personaje'
-       />
-       <button className={style.BotonAgregar}  type='submit'>Agregar</button>
-     </form>
+   <div className={style.Barra}>
+     
+       <input className={style.Buscador} type='search' onChange={handleChange} value={id}/>    
+       <button className={style.BotonAgregar}  
+               onClick={() =>{
+                onSearch(id)
+                }}
+                >
+            Agregar
+        </button>
+       
+     
+   </div>
    );
  };
  
