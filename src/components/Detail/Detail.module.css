@@ -1,0 +1,46 @@
+.Contenedor{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    background-color: rgba(0, 0, 0, 0.337);
+    bottom: 50px;
+   }
+
+.Contenedor:hover{
+    background-color: rgba(0, 0, 0, 0.661);
+    border-top-left-radius: 50px;
+    border-bottom-right-radius:50px ;
+    border-color: rgb(169, 41, 41);
+}
+
+.Nombre{
+    color: red;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0;
+}
+.Nombre:Hover{
+   
+    color: rgb(255, 0, 0);
+    border-top-left-radius: 80px;
+}
+
+.Datos{
+    color:white;
+    padding:10px;
+    
+}
+
+.Imagen{
+    border-radius: 50%;
+}
+
+
+.ImagenContainer{
+    position: absolute;
+    left: 180px;
+    border-radius: 50%;
+}
+

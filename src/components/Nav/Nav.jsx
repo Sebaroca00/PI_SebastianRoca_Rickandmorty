@@ -1,7 +1,7 @@
 import React from 'react';
-//import {Link} from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
-//import style from './Nav.module.css'
+import { Link } from 'react-router-dom';
+
  
 const Nav = (props) =>{
   const {onSearch} = props;
@@ -10,6 +10,8 @@ const Nav = (props) =>{
 
     return(
       <div>
+        <Link to="/about">About</Link>
+        <Link to="/home">Home</Link>
         <SearchBar onSearch={onSearch}/>
       </div>
     )
