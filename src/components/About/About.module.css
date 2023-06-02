@@ -1,3 +1,32 @@
 .Contenedor{
-    color: red;
+    background-color: rgba(0, 0, 0, 0.822);
 }
+
+.Title{
+    color: red;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.Foto{
+    height: 250px;
+    position: absolute;
+    left: 250px;
+    
+}
+
+.ContenedorDatos{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    padding: px;
+}
+
+.Datos{
+    color:white;
+    display: flex;
+    padding: 10px;
+}
+
