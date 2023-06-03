@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 
  function Card(props) {
-  const{id, name, status, species, gender, origin, image, onClose, myFavorites} = props;
+  const{id, name, status, species, gender, origin, image, onClose,addFav,removeFav, myFavorites} = props;
 
   const [isFav, setIsFav]= useState(false)
 
@@ -55,10 +55,10 @@ import { useState, useEffect } from "react";
 const mapDispatchToProps = (dispatch) => {
   return {
     addFav: (character) => {
-      dispatch(addFav(character))
+      dispatch(addFav(character));
     },
     removeFav: (id) => {
-      dispatch(removeFav(id))
+      dispatch(removeFav(id));
     },
   };
 };
