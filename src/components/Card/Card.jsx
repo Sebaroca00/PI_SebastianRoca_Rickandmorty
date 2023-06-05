@@ -1,13 +1,25 @@
 import { connect } from "react-redux";
 import style from "./Card.module.css"
 import { Link } from "react-router-dom";
-import { addFav, removeFav } from "../../Redux/action";
+import { addFav, removeFav } from "../../redux/actions/actions";
 import { useState, useEffect } from "react";
 
 
 
  function Card(props) {
-  const{id, name, status, species, gender, origin, image, onClose,addFav,removeFav, myFavorites} = props;
+  const{
+    id, 
+    name, 
+    status, 
+    species, 
+    gender, 
+    origin, 
+    image,
+    onClose,
+    addFav,
+    removeFav, 
+    myFavorites
+  } = props;
 
   const [isFav, setIsFav]= useState(false)
 
