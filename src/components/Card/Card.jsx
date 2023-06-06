@@ -13,7 +13,6 @@ import { useState, useEffect } from "react";
     status, 
     species, 
     gender, 
-    origin, 
     image,
     onClose,
     addFav,
@@ -51,13 +50,12 @@ import { useState, useEffect } from "react";
             </button>
             <div className={style.AllDatos}>
         <Link className={style.Link}to={`/detail/${id}`}>
-        <h2 >Name: {name}</h2>
+        <h2 className={style.Linkt}>{name}</h2>
         </Link>
         <h2 className={style.Datos}>Status: {status}</h2>
         <h2 className={style.Datos}>Specie: {species}</h2>
         <h2 className={style.Datos}>Gender: {gender}</h2>
-        <h2 className={style.Datos}>Origin: {origin}</h2>
-        </div>
+         </div>
         <img className={style.Imagen} src={image} alt="" />
      </div>
   );

@@ -15,7 +15,7 @@ const Nav = (props) =>{
         <Link className={style.Link} to="/about">About</Link>
         <Link className={style.Link}  to="/home">Home</Link>
         <Link className={style.Link}  to={"/favorites"}> Favorites</Link>
-        <SearchBar onSearch={onSearch}/>
+        <SearchBar className={style.SearchBar} onSearch={onSearch}/>
       </div>
     )
   }

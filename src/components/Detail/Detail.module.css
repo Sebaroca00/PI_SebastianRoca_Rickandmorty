@@ -34,13 +34,18 @@
 }
 
 .Imagen{
-    border-radius: 50%;
+    border-top-left-radius: 30%;
+    border-bottom-right-radius:30% ;
+    box-shadow: 0px 0px 20px rgb(0, 247, 255);
 }
 
+.Imagen:hover{
+    box-shadow: 0px 0px 50px rgb(0, 247, 255);
+}
 
 .ImagenContainer{
     position: absolute;
-    left: 180px;
-    border-radius: 50%;
+    left: 130px;
+    
 }
 
