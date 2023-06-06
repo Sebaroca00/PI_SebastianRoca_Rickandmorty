@@ -40,9 +40,9 @@ import { useState, useEffect } from "react";
   return (
      <div className={style.Carta}>
       {isFav ? (
-            <button onClick={handleFavorite}>❤️</button>
+            <button className={style.fav} onClick={handleFavorite}>❤️</button>
         ) : (
-            <button onClick={handleFavorite}>🤍</button>
+            <button className={style.fav} onClick={handleFavorite}>🤍</button>
         )}
          <button className={style.Boton} 
           onClick={() => {
@@ -50,8 +50,8 @@ import { useState, useEffect } from "react";
             X
             </button>
             <div className={style.AllDatos}>
-        <Link to={`/detail/${id}`}>
-        <h2 className={style.Datos}>Name: {name}</h2>
+        <Link className={style.Link}to={`/detail/${id}`}>
+        <h2 >Name: {name}</h2>
         </Link>
         <h2 className={style.Datos}>Status: {status}</h2>
         <h2 className={style.Datos}>Specie: {species}</h2>

@@ -1,13 +1,13 @@
 .Barra{
     display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: flex-end;
-    align-items: flex-start;
-    margin-left: 930px;
-    margin-top: 0;
+    flex-wrap: nowrap; 
 }
 .Buscador{
     width: 200px;
-    height: 10px;
+    height: 29px;
     padding: 10px;
     border-radius: 50px;
 }

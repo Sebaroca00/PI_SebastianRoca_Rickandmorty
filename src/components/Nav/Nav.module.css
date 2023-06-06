@@ -1,11 +1,11 @@
 .Contenedor{
-   display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: space-between;
+    display: flex;
+    flex-wrap: nowrap;
+  
+    justify-content: flex-end;
+    align-items: center;
 }
-
+    
 .Navegador{
     display: flex;
     justify-content: flex-end;
@@ -13,5 +13,28 @@
 }
 
 .Link{
-    padding-right: 50px;    
+    font-weight: bold;
+    text-align: center;
+    width: 80px;
+    margin: 5px;
+    padding: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 50%;
+    background-color: white;
+    text-decoration: none; /* Elimina el subrayado */
+    color: black;   
+}
+
+.Link:hover{
+    background-color: rgba(14, 14, 46, 0.753);
+    color: white;
+    box-shadow: 0px 0px 30px rgb(255, 255, 255);
+}
+
+
+
+.SearchBar{
+    display: flex;
+    justify-content: flex-end;
 }

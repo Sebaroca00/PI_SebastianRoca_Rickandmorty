@@ -23,11 +23,11 @@ function Form(props) {
   };
 
   return (
-    <div>
+    <div className={styles.Contenedor}>
       <form onSubmit={handleSubmit} className={styles.Form}>
-        <div>
+        <div className={styles.Datos}>
           <label>Email</label>
-          <input
+          <input className={styles.Datos2}
             type="text"
             value={userData.email}
             name="email"
@@ -40,10 +40,10 @@ function Form(props) {
           ) : (
             <span className={styles.Error}>{errors.e3}</span>
           )}
-        </div>
-        <div>
+       
+       
           <label>Password</label>
-          <input
+          <input className={styles.Datos2}
             type="password"
             value={userData.password}
             name="password"
@@ -54,9 +54,10 @@ function Form(props) {
           ) : (
             <span className={styles.Error}>{errors.p2}</span>
           )}
-        </div>
-        <div></div>
-        <button type="submit">Submit</button>
+       
+      <hr />
+        <button className={styles.Button} type="submit">Submit</button>
+         </div>
       </form>
     </div>
   );
