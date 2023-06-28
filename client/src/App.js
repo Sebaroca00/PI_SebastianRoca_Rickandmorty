@@ -16,6 +16,7 @@ function App() {
   const [access, setAccess] = useState(false);
   const username = '';
   const password = '';
+  const URL = "http://localhost:3001/rickandmorty/character"
 
   function login(userData) {
     if (userData.password === password && userData.email === username) {
@@ -25,7 +26,7 @@ function App() {
   }
 
   const onSearch = (id) => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+    axios(`${URL}/${id}`).then(({ data }) => {
       if (data.name) {
         // Verificar si el personaje ya existe en el array
         const characterExists = characters.some((character) => character.id === data.id);

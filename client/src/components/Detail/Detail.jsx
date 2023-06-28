@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import style from './Detail.module.css'
+const URL = "http://localhost:3001/rickandmorty/character"
 
 const Detail = () => {
   const { id } = useParams();
   const [character, setCharacter] = useState({});
 
 useEffect(() => {
-   axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+   axios(`${URL}/${id}`).then(({ data }) => {
       if (data.name) {
          setCharacter(data);
       } else {
