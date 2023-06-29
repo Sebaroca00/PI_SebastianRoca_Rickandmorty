@@ -1,5 +1,6 @@
 const http = require("http")
 const data = require("./utils/data")
+const getCharById = require("./controllers/getCharById")
 const PORT = 3001
 
 http
@@ -9,20 +10,10 @@ http
         const {url} = req;
         if(url.includes("/rickandmorty/character")){
             const id = Number(url.split("/").at(-1));
-        
-        const personaje = data.find((personaje) => personaje.id === id)
-          
-        if (personaje){
-        res.writeHead(200, {"Content-Type":"application/json"})
-           
-           res.end(JSON.stringify(personaje))
-        } else {
-            res.writeHead(404, {"Content-Type":"application/json"});
-            res.end(JSON.stringify({ message: "Character not found"}))
-        }
+        getCharById(res, id);
        } else {
         res.writeHead(403, {"Content-Type":"application/json"});
-            res.end(JSON.stringify({ message: "Route not found"}))
+        res.end(JSON.stringify({ message: "Route not found"}))
        }
     })
     .listen(PORT, "localhost", null,
