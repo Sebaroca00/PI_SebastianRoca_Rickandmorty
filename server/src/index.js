@@ -1,3 +1,14 @@
+//CON EXPRESS
+require ("dotenv").config();
+const express = require ("express");
+const server = express();
+const { PORT } = process.env
+server.listen(PORT, ()=>{
+    console.log(`Server on port ${PORT}`)
+});
+
+/*
+SIN EXPRESS
 const http = require("http")
 const data = require("./utils/data")
 const getCharById = require("./controllers/getCharById")
@@ -19,4 +30,4 @@ http
     .listen(PORT, "localhost", null,
     () =>{
     console.log(`Listening on port: ${PORT}`);
-});
+});*/
