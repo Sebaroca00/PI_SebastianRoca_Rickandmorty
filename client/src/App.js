@@ -14,16 +14,17 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
-  const username = '';
-  const password = '';
   const URL = "http://localhost:3001/rickandmorty/character"
 
   function login(userData) {
-    if (userData.password === password && userData.email === username) {
-      setAccess(true);
-      navigate('/home');
-    }
-  }
+    const { email, password } = userData;
+    const URL = 'http://localhost:3001/rickandmorty/login/';
+    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+       const { access } = data;
+       setAccess(data);
+       access && navigate('/home');
+    });
+ }
 
   const onSearch = (id) => {
     axios(`${URL}/${id}`).then(({ data }) => {
