@@ -1,12 +1,21 @@
-const router = require("express").Router()
+const { login } = require('../controllers/login')
+const { getCharById } = require('../controllers/getCharById')
+const { getCharacterByName } = require('../controllers/getCharacterByName')
+const { postFav, deleteFav } = require('../controllers/handleFavorites')
+const router = require('express').Router()
 
-const login = require("../controllers/login")
-const {postFav, deleteFav} = require("../controllers/handleFavorites")
-const getCharById = require("../controllers/getCharById")
-
-router.get("/character/:id", getCharById);
-router.get("/login", login);
-router.post("/fav", postFav)
-router.delete("/fav/:id", deleteFav)
+router.get('/character/:id', (req, res) => {
+	const { id } = req.params
+	!isNaN(id) ? getCharById(req, res) : getCharacterByName(req, res)
+})
+router.get('/login', (req, res) => {
+	login(req, res)
+})
+router.post('/fav', (req, res) => {
+	postFav(req, res)
+})
+router.delete('/fav/:id', (req, res) => {
+	deleteFav(req, res)
+})
 
 module.exports = router

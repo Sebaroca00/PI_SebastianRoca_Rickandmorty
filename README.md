@@ -1,4 +1,4 @@
-# **💪 HW5 | Express - Integration**
+# **💪 HW3 | Sequelize Part 1 - Integration**
 
 ## **🕒 DURACIÓN ESTIMADA**
 
@@ -16,214 +16,235 @@ XX minutos
 
 ## **📝 INTRODUCCIÓN**
 
-En esta homework crearemos un servidor con la librería de express. A su vez crearemos distintas rutas, y también simularemos una base de datos apra nuestros personajes favoritos.
+En esta homework pondremos en práctica todo lo que hemos aprendido hasta ahora sobre Sequelize. Aplicaremos nuestros conocimientos para conectar nuestro código con una nueva base de datos para nuestro proyecto de Rick & Morty.
 
-Esta vez las rutas que crearemos son:
-
--  **`GET getCharById`**: esta ruta obtendrá personajes de la API mediante su **id**.
--  **`GET login`**: esta ruta es la que le dará o no acceso al usuario para usar la aplicación.
--  **`POST postFav`**: esta ruta guardará en nuestro servidor a nuestros personajes favoritos.
--  **`DELETE deleteFav`**: esta ruta eliminará a un personaje de nuestros favoritos.
-
-<br />
+</br >
 
 ---
 
 ## **📋 INSTRUCCIONES**
 
-### **👩‍💻 EJERCICIO 1 | Servidor**
+### **👩‍💻 EJERCICIO 01 | Dependencias & Config**
 
-Instala la librería **`express`**. Luego dirígete al archivo **`index.js`** y elimina todo su contenido. Ahora crearemos el servidor con esta librería.
+Lo primero que deberás hacer es instalar las siguientes dependencias en tu **`package.json`**:
 
-1. Dentro del archivo **index.js** importa **`express`** e inicializa un nuevo servidor en el puerto 3001. Esta sería una forma de seguir buenas prácticas:
+-  **sequelize**
+-  **pg**
+-  **dotenv**
+
+Una vez las hayas instalado tendrás que crear la base de datos en PostgreSQL. Para crear la base de datos puedes optar por utilizar directamente **`pgAdmin`**. En el caso de que quieras hacerlo por terminal sigue estos pasos:
+
+> ⚠️ [**IMPORTANTE**]: es muy importante que el nombre de la base de datos sea: **`rickandmorty`**. En el caso de no cumplir esto la homework puede fallar.
+
+1. Abre la terminal **`SQL Shell (psql)`** e ingresa tu información personal.
+
+2. Crea una base de datos con el nombre **`rickandmorty`** utilizando el comando que ya conoces.
+
+   Puedes verificar que se haya creado correctamente con el comando:
+
+   ```SQL
+      \l
+   ```
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 02 | ENV**
+
+Dirígete a la raíz de tu proyecto Back-End. Allí deberás crea un archivo llamado **`.env`**. En su interior debes escribir lo siguiente:
 
 ```js
-const express = require('express');
-const server = express();
-const PORT = 3001;
-
-server.listen(PORT, () => {
-   console.log('Server raised in port: ' + PORT);
-});
+DB_USER=postgres
+DB_PASSWORD= ---> // ¡Aquí va tu contraseña!
+DB_HOST=localhost
 ```
-
-¡Acabas de crear tu servidor con Express! 😎
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 2 | GET getCharById**
+### **👩‍💻 EJERCICIO 03 | DB Connection**
 
-En este ejercicio construiremos la nueva versión de este controlador para que nos sirva con **express**. Dirígete al archivo **`getCharById.js`** y elimina todo el contenido que hay dentro de él.
+Ya tenemos todo lo necesario para comenzar a trabajar. Comenzaremos por conectar el código con nuestra base de datos. Para esto:
 
-1. Crea una constante llamada **`URL`** y guarda lo siguiente: "**https://rickandmortyapi.com/api/character/**".
+1. Lleva el archivo [**DB_connection**](./DB_connection.js) a tu carpeta **src**.
 
-2. Crea una función con el nombre **`getCharById`** y expórtala. Recibe por parámetro a los objetos **`req`** y **`res`**.
+2. Dentro de él encontrás el siguiente paso a seguir.
 
-3. Dentro de la función haz una petición a la API a partir del **id** que recibes por **`Params`**.
+> [**NOTA**]: revisa el código comentado en la sección **`Ejercicio 03`**.
 
-> [**NOTA**]: no olvides importar **`axios`**.
-
-4. En el caso de que todo salga OK y se encuentre a un personaje, devuelve un JSON con las propiedades: **id**, **status**, **name**, **species**, **origin**, **image** y **gender**.
-
-5. En el caso de que todo salga OK pero no se encuentre a un personaje, devuelve un mensaje con **status 404** que diga _Not fount_.
-
-6. Si hay un error debes responder con un status 500, y un texto con la propiedad **`message`** de **error**.
-
-</br>
+<br />
 
 ---
 
-### **👩‍💻 EJERCICIO 3 | GET login**
+### **👩‍💻 EJERCICIO 04 | Models**
 
-En este ejercicio construiremos un controlador que validará que el usuario que se está logeando tenga permiso. Para definir quienes tendrán permisos ve a tu carpeta **utils** y crea un archivo llamado **`users.js`**. Aquí solo deberas exportar un arrgelo con un solo objeto. Este objeto debe tener esta estructura:
+Llegó el momento de crear nuestros modelos. LLeva la carptea [**models**]("./models) a tu carpeta **src**. Dentro de esta carpeta encontrarás dos archivos: **`User`** y **`Favorite`**. Tendrás que agregar las propiedades y validaciones correspondiente en cada uno de los modelos.
+
+A continuación te dejamos las propiedades de cada modelo junto con sus validaciones.
+
+<div style="display: flex; position: relative; height: 45vh; overflow: hidden;">
+
+<div style="position: absolute; top: 3vh; left: 15vw;">
+
+### **USER**
+
+<details>
+   <summary>id</summary>
+   <ul>
+      <li>dataType: integer</li>
+      <li>allowNull: false</li>
+      <li>primaryKey: true</li>
+   </ul>
+</details>
+<details>
+   <summary>email</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+      <li>isEmail: true</li>
+   </ul>
+</details>
+<details>
+   <summary>password</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+
+</div>
+
+<div style="position: absolute; top: 3vh; right: 15vw; width: 20vw;">
+
+### **FAVORITE**
+
+<details>
+   <summary>id</summary>
+   <ul>
+      <li>dataType: integer</li>
+      <li>allowNull: false</li>
+      <li>primaryKey: true</li>
+   </ul>
+</details>
+<details>
+   <summary>name</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>status</summary>
+   <ul>
+      <li>dataType: Enum (Alive - Dead - unknown)</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>species</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>gender</summary>
+   <ul>
+      <li>dataType: Enum (Female - Male - Genderless - unknown)</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>origin</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>image</summary>
+   <ul>
+      <li>dataType: string</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+
+</div>
+
+</div>
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 05 | Instanciar Modelos**
+
+Ya tenemos nuestra conexión a la base de datos y nuestros modelos creados. Lo único que nos queda por hacer es que cada vez que levantemos el proyecto, estos modelos se guarden en la base de datos. Para esto:
+
+1. Dirígete al archivo **`DB_connection`**. En este archivo importa los dos modelos que creaste previamente. Asegúrate de importalos con el nombre **"`FavoriteModel`"** y **"`UserModel`"**.
+
+2. Luego de importarlos tendrás que ejecutar cada uno, pasándoles como argumento la instancia de sequelize que se encuentra más arriba.
+
+Por ejemplo, si tuvieras un modelo llamado **Henry** deberías hacer lo siguiente:
 
 ```js
-module.exports = [{email: /*Tu email*/, password: /*Tu password*/}];
+HenryModel(sequelize);
 ```
 
-1. Dentro de tu carpeta **controllers** crea un archivo llamado **`login.js`**. Dentro de este deberás crear y exportar una función que recibirá por parámetro a los objetos **`req`** y **`res`**.
-
-2. Deberás obtener los datos **email** y **password** que recibes mediante **`Query`**. Una vez hecho esto, importa tu arreglo de usuarios y verifica si dentro de ese arreglo hay un usuario que coincida tanto su email y su contraseña con los que recibes por **`Query`**.
-
-3. En el caso de que haya un usuario que cumpla esa condición, entonces debes devolver una respuesta con **status 200**, y, en formato JSON, un objeto con una propiedad **access: `true`**. Caso contrario devuelve lo mismo pero con la propiedad **access: `false`**.
+> [**NOTA**]: 👀 revisa que en el archivo hay un espacio comentado para que realices este ejercicio.
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 4 | POST & DELETE favorites**
+### **👩‍💻 EJERCICIO 06 | RELATIONS**
 
-Dentro de tu carpeta **controllers** crea un archivo con el nombre **`handleFavorites.js`**. Dentro de este archivo deberás declarar un **arreglo vacío** llamado **`myFavorites`**.
+Ahora tendrás que relacionar tus modelos. Si nos ponemos a pensar, un usuario puede tener muchos personajes favoritos. Y un personaje puede ser el favorito de muchos usuarios. ¡Esto quiere decir que la relación debe ser de muchos a muchos!
 
-> [**NOTA**]: es importante que **NO** declares este arreglo como constante ya que lo modificaremos.
+1. Dirígete al archivo **`DB_connection`** y relaciona tus modelos. La tabla intermedia debe llamarse **`user_favorite`**.
 
-1. Crea una función llamada **`postFav`** que reciba por parámetro los objetos **`req`** y **`res`**.
+2. Una vez los hayas relacionado, exporta cada modelo de forma individual.
 
-2. Agrega en tu arreglo de favoritos el personaje que estarás recibiendo por **`Body`**.
+> [**NOTA**]: 👀 revisa que en el archivo hay un espacio comentado para que realices este ejercicio.
 
-3. Finalmente devuelve tu arreglo de favoritos en formato JSON.
+3. Para terminar dirígete a tu archivo **`index.js`** e importa la varaible **`conn`** de tu archivo **`DB_connection`**. Una vez la hayas importado, ¡sincroniza sequelize con tu base de datos antes que se levante el servidor!
 
-4. Crea una función llamada **`deleteFav`** que reciba por parámetro los objetos **`req`** y **`res`**.
-
-5. Filtra a tus personajes favoritos de manera que elimines aquel que tiene el mismo **id** que recibes por **`Params`**.
-
-6. Finalmente devuelve tu arreglo de favoritos en formato JSON.
-
-7. Exporta ambas funciones.
+   ```js
+   const { conn } = require('./DB_connection');
+   ```
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 5 | Rutas**
+<div style="background-color: #343434; padding: 2vw;">
 
-Dirígete a la carpeta **routes** y crea un archivo con el nombre **`index.js`**. Dentro de este deberás importar todos tus controladores. También deberás importar las función **`Router`** de **express**. Crea una ruta para cada controlador con los siguientes paths:
+## **😼 BREAK 😼**
 
--  GET **`getCharById`**: "/character/:id"
--  GET **`login`**: "/login"
--  POST **`postFav`**: "/fav"
--  DELETE **`deleteFav`**: "/fav/:id"
+En este momento ya deberíamos de poder levantar el proyecto y que todo esté funcionando correctamente. Para esto ejecuta el comando:
 
-Finalmente exporta tu router.
+```bash
+   npm start
+```
 
-<br />
+<div align="center" >
+   <img src="./assets/workInProgress.png" alt="" />
+</div>
 
----
-
-### **👩‍💻 EJERCICIO 6 | Middlewares**
-
-Dirígete al archivo **`index.js`** en el que tienes tu servidor. Aquí deberás:
-
-1. Importar tu router.
-
-2. Copia este middleware en tu servidor:
-
-   ```js
-   server.use((req, res, next) => {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Credentials', 'true');
-      res.header(
-         'Access-Control-Allow-Headers',
-         'Origin, X-Requested-With, Content-Type, Accept'
-      );
-      res.header(
-         'Access-Control-Allow-Methods',
-         'GET, POST, OPTIONS, PUT, DELETE'
-      );
-      next();
-   });
-   ```
-
-3. Crea un middleware que ejecute a **`express.json()`**.
-
-4. Crea un middleware que agregue el string "**`/rickandmorty`**" antes de cada una de tus rutas.
+</div>
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 7 | Back & Front**
+## **🔎 Recursos adicionales**
 
-Llegó el momento para conectar nuestro nuevo servidor con nuestro Front-End. Para este ejercicio simplemente tendrás que reemplazar código de tu Front-End por los distintos snippets que te presentaremos a continuación. Para esto dirígete a tu carpeta **Client**.
+-  Documentación [**API Rick and Morty**](https://rickandmortyapi.com/documentation/#get-all-characters)
 
-1. Dirígete a tu archivo **`App.js`** y busca tu función **`login`**. Elimina por completo esta función, ya que la reemplazaremos con esta:
+-  Documentación [**Sequelize**](https://sequelize.org/docs/v6/)
 
-   ```js
-   function login(userData) {
-      const { email, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-         const { access } = data;
-         setAccess(data);
-         access && navigate('/home');
-      });
-   }
-   ```
-
-2. Ahora conectaremos nuestra ruta **postFav**. Para esto dirígete a tu archivo **`actions.js`** y reemplaza tu función addFav. Luego dirígete a tu **`reducer`** y reemplaza tu caso "ADD_FAV".
-
-   ```js
-   import axios from "axios";
-
-   // ACTION | addFav
-   export const addFav = (character) => {
-      const endpoint = 'http://localhost:3001/rickandmorty/fav';
-      return (dispatch) => {
-         axios.post(endpoint, character).then(({ data }) => {
-            return dispatch({
-               type: 'ADD_FAV',
-               payload: data,
-            });
-         });
-      };
-   };
-
-   // REDUCER | ADD_FAV
-   case 'ADD_FAV':
-         return { ...state, myFavorites: payload, allCharacters: payload };
-   ```
-
-> [**NOTA**]: debes importar **axios**.
-
-3. Por último nos queda conectar nuestra ruta **deleteFav**. Para esto dirígete a tu archivo **`actions.js`** y reemplaza tu función removeFav. Luego dirígete a tu **`reducer`** y reemplaza tu caso "REMOVE_FAV".
-
-   ```js
-   // ACTION | removeFav
-   export const removeFav = (id) => {
-      const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
-      return (dispatch) => {
-         axios.delete(endpoint).then(({ data }) => {
-            return dispatch({
-               type: 'REMOVE_FAV',
-               payload: data,
-         });
-         });
-      };
-   };
-
-   // REDUCER | REMOVE_FAV
-   case 'REMOVE_FAV':
-         return { ...state, myFavorites: payload };
-   ```
+<div align="center">
+   <img src="./assets/rickandmorty.jpg" alt="" width="800px" />
+</div>
